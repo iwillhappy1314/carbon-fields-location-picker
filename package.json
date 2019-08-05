@@ -46,7 +46,6 @@
     "react": "^16.6.3",
     "react-baidu-maps": "^1.0.8",
     "react-bmap": "^1.0.100",
-    "react-dom": "^16.6.3",
-    "simple-react-ui": "^3.0.5"
+    "react-dom": "^16.6.3"
   }
 }
