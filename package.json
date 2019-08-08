@@ -41,11 +41,16 @@
     "@wordpress/element": "^2.1.8",
     "@wordpress/hooks": "^2.0.3",
     "@wordpress/i18n": "^3.1.0",
+    "callbag-basics": "^3.1.0",
+    "callbag-of": "^2.0.0",
+    "china-area-data": "^4.0.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-baidu-maps": "^1.0.8",
     "react-bmap": "^1.0.100",
-    "react-dom": "^16.6.3"
+    "react-city-picker": "^1.0.6",
+    "react-dom": "^16.6.3",
+    "refract-callbag": "^4.2.1"
   }
 }

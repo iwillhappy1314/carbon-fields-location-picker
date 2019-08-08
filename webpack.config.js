@@ -67,7 +67,8 @@ module.exports = {
 
         return memo;
     }, {
-        '@carbon-fields/core': 'cf.core'
+        '@carbon-fields/core': 'cf.core',
+        'BMap': 'BMap'
     } ),
     plugins: [
         new MiniCssExtractPlugin( {

@@ -1,3 +1,15 @@
-/* ==========================================================================
-   Number
-   ========================================================================== */
+.rs-location{
+    display: flex;
+    margin-bottom: .5rem;
+
+    &__address{
+        min-width: 300px;
+        flex-grow: 1;
+        margin-left: .5rem;
+    }
+
+    .cf-search-input__inner{
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+}

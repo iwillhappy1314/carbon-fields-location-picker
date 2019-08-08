@@ -12,6 +12,10 @@ class Location_Picker_Field extends Field
 	 * {@inheritDoc}
 	 */
 	protected $default_value = array(
+		'province' => '110000',
+		'city' => '110100',
+		'district' => '110101',
+		'address' => '',
 		'lng' => '116.403752',
 		'lat' => '39.924131',
 		'show' => 0,
@@ -26,8 +30,17 @@ class Location_Picker_Field extends Field
 	 */
 	public function __construct($type, $name, $label)
 	{
-		$this->set_value_set(new Value_Set(Value_Set::TYPE_MULTIPLE_PROPERTIES, array(
-			'lng' => '', 'lat' => '', 'show' => 0)
+		$this->set_value_set(new Value_Set(
+			Value_Set::TYPE_MULTIPLE_PROPERTIES,
+			array(
+				'province' => '',
+				'city' => '',
+				'district' => '',
+				'address' => '',
+				'lng' => '',
+				'lat' => '',
+				'show' => 0
+			)
 		));
 		parent::__construct($type, $name, $label);
 	}
@@ -54,7 +67,7 @@ class Location_Picker_Field extends Field
 
 		$api_key = apply_filters('carbon_fields_baidu_map_field_api_key', false);
 		$url = apply_filters('carbon_fields_map_field_api_url', '//api.map.baidu.com/api?v=2.0&ak=' . ($api_key ? $api_key : 'dlgPgXdKt3Qd2WcSipiOdVye'), $api_key);
-		
+
 		wp_enqueue_script('carbon-baidu-maps', $url, array(), null);
 
 		// Enqueue field styles.
@@ -84,6 +97,10 @@ class Location_Picker_Field extends Field
 		}
 
 		$value_set = array(
+			'province' => '',
+			'city' => '',
+			'district' => '',
+			'address' => '',
 			'lng' => '',
 			'lat' => '',
 			'show' => 0,
@@ -117,6 +134,10 @@ class Location_Picker_Field extends Field
 
 		$field_data = array_merge($field_data, array(
 			'value' => array(
+				'province' => $value_set['province'],
+				'city' => $value_set['city'],
+				'district' => $value_set['district'],
+				'address' => $value_set['address'],
 				'lng' => $value_set['lng'],
 				'lat' => $value_set['lat'],
 				'show' => 0,
@@ -134,15 +155,11 @@ class Location_Picker_Field extends Field
 	 * @param  int    $zoom Zoom level
 	 * @return $this
 	 */
-	public function set_position($lng, $lat)
+	public function set_position($location)
 	{
 		return $this->set_default_value(array_merge(
 			$this->get_default_value(),
-			array(
-				'lng' => $lng,
-				'lat' => $lat,
-				'show' => 0,
-			)
+			$location
 		));
 	}
 }

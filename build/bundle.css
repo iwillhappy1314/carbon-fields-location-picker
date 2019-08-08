@@ -1,8 +1,7 @@
-/* ==========================================================================
-   Number
-   ========================================================================== */
-.cf-number__input {
-  display: block;
-  width: 100% !important;
-  margin: 0; }
+.rs-location {
+  display: flex;
+  margin-bottom: .5rem; }
+  .rs-location__address {
+    min-width: 360px;
+    margin-left: .5rem; }
 
