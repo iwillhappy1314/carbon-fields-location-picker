@@ -3,14 +3,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "X-Generator: babel-plugin-makepot\n"
 
-#: src/main.js:274
-msgid "The address could not be found."
-msgstr ""
-
-#: src/main.js:276
-msgid "Geocode was not successful for the following reason: "
-msgstr ""
-
-#: src/main.js:294
+#: src/main.js:305
 msgid "Error alert"
 msgstr ""
