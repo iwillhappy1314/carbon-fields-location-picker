@@ -150,9 +150,7 @@ class Location_Picker_Field extends Field
 	/**
 	 * Set the coords and zoom of this field.
 	 *
-	 * @param  string $lat  Latitude
-	 * @param  string $lng  Longitude
-	 * @param  int    $zoom Zoom level
+	 * @param  array $location  Latitude
 	 * @return $this
 	 */
 	public function set_position($location)

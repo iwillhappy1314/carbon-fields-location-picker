@@ -16,7 +16,7 @@ import { BaiduMap, Marker, NavigationControl } from 'react-baidu-maps';
 import CityPicker from 'react-city-picker'
 import data from '../node_modules/china-area-data/data';
 import SearchInput from './search-input';
-import BMap from 'BMap'
+import BMap from 'BMap';
 
 class LocationPickerField extends Component {
 
@@ -65,17 +65,16 @@ class LocationPickerField extends Component {
 
     // 解析地址为坐标
     let map = this.refs.BMap;
+    let picker = this.refs.cityPicker;
 
     if (address) {
-      this.props.onGeocodeAddress({ location, address, map });
+      this.props.onGeocodeAddress({ location, address, map, picker });
     }
 
     onChange(id, {
       ...value,
       ...location
     });
-
-    this.forceUpdate();
 
   };
 
@@ -90,10 +89,11 @@ class LocationPickerField extends Component {
     const { id, value, onChange, } = this.props;
 
     let map = this.refs.BMap;
+    let picker = this.refs.cityPicker;
     let location = address;
 
     if (address) {
-      this.props.onGeocodeAddress({ location, address, map });
+      this.props.onGeocodeAddress({ location, address, map, picker });
     }
 
     onChange(id, {
@@ -119,6 +119,7 @@ class LocationPickerField extends Component {
 
           <CityPicker
             id={id}
+            ref="cityPicker"
             className="rs-location_city"
             source={data}
             selectedProvince={value.province}
@@ -140,7 +141,7 @@ class LocationPickerField extends Component {
           mapContainer={<div style={{ height: '360px' }} />}
           ref="BMap"
           center={value}
-          zoom="15"
+          zoom="16"
         >
           <NavigationControl anchor="top_right" />
 
@@ -248,23 +249,27 @@ const handler = props => effect => {
 
         return new Promise((resolve, reject) => {
           let map = payload.map;
+          let picker = payload.picker;
           let location = payload.location;
           let geo = new BMap.Geocoder();
           let city = '';
 
-          console.log(location);
-          console.log(value);
-
-          if (location.city !== '') {
+          if (location.city !== undefined) {
             city = data[location.province][location.city];
+          } else {
+            // 直辖市/特别行政区的省份就是城市
+            if (
+              picker.state.province === '110000' ||
+              picker.state.province === '120000' ||
+              picker.state.province === '310000' ||
+              picker.state.province === '500000' ||
+              picker.state.province === '810000' ||
+              picker.state.province === '820000'){
+              city = data['86'][picker.state.province];
+            } else {
+              city = data[picker.state.province][picker.state.city];
+            }
           }
-
-          if (city === ''){
-            console.log(222);
-            city = data[value.province][value.city];
-          }
-
-          console.log(city);
 
           if (address !== '') {
             geo.getPoint(address, (point) => {
@@ -272,6 +277,9 @@ const handler = props => effect => {
                 map.centerAndZoom(point, 15);
 
                 resolve({
+                  province: picker.state.province,
+                  city: picker.state.city,
+                  district: picker.state.district,
                   lat: point.lat,
                   lng: point.lng
                 });
@@ -287,15 +295,18 @@ const handler = props => effect => {
 
       // 地址解析后继续操作
       geocode(payload.address)
-        .then(({ lat, lng }) => {
+        .then(({ lat, lng, province, city, district}) => {
+
           onChange(id, {
             ...value,
+            province,
+            city,
+            district,
             address: payload.address,
             lat: lat,
             lng: lng
           });
 
-          console.log(lat);
         })
         .catch((alert) => {
           // eslint-disable-next-line
