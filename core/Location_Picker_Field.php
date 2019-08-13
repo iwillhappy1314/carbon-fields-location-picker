@@ -66,7 +66,7 @@ class Location_Picker_Field extends Field
 		$root_uri = \Carbon_Fields\Carbon_Fields::directory_to_url(\Carbon_Field_Location_Picker\DIR);
 
 		$api_key = apply_filters('carbon_fields_baidu_map_field_api_key', false);
-		$url = apply_filters('carbon_fields_map_field_api_url', '//api.map.baidu.com/api?v=2.0&ak=' . ($api_key ? $api_key : 'dlgPgXdKt3Qd2WcSipiOdVye'), $api_key);
+		$url = apply_filters('carbon_fields_map_field_api_url', '//api.map.baidu.com/api?v=2.0&ak=' . ($api_key ? $api_key : ''), $api_key);
 
 		wp_enqueue_script('carbon-baidu-maps', $url, array(), null);
 

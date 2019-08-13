@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Plugin Name: Carbon Field Location Picker
  * Description: Number Field extension for Carbon Fields.
  * Version: 3.0.0
  * Author: htmlburger
- * Author URI: https://htmlburger.com/
- * Plugin URI: http://carbonfields.net/
+ * Author URI: https://www.wpzhiku.com/
+ * Plugin URI: http://www.wpzhiku.com/
  * License: GPL2
  * Requires at least: 4.0
  * Tested up to: 5.0.2
