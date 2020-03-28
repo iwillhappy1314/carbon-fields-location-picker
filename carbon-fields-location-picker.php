@@ -4,7 +4,7 @@
  * Plugin Name: Carbon Field Location Picker
  * Description: Number Field extension for Carbon Fields.
  * Version: 3.0.0
- * Author: htmlburger
+ * Author: Amos Lee
  * Author URI: https://www.wpzhiku.com/
  * Plugin URI: http://www.wpzhiku.com/
  * License: GPL2

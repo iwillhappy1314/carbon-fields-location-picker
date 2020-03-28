@@ -84,11 +84,13 @@ class Location_Picker_Field extends Field
 		);
 	}
 
-	/**
-	 * Load the field value from an input array based on its name
-	 *
-	 * @param array $input Array of field names and values.
-	 */
+    /**
+     * Load the field value from an input array based on its name
+     *
+     * @param array $input Array of field names and values.
+     *
+     * @return \Carbon_Field_Location_Picker\Location_Picker_Field
+     */
 	public function set_value_from_input($input)
 	{
 		if (!isset($input[$this->get_name()])) {
